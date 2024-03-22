@@ -44,7 +44,7 @@ async function animation_start(finish) {
     }, 850+in_delay*5)
 }
 
-const in_delay = 50
+const in_delay = 80
 
 function animation_run() {
 
@@ -95,11 +95,9 @@ let loading_text
 <section v-if="show" :class="className">
     <div class="plane"></div>
     <div class="plane"></div>
-    <div class="plane"></div>
-    <div class="plane"></div>
     <div class="container">
         <div class="content">
-            <img src="@a/image/logo.svg" alt="">
+            <div class="img"></div>
             <p>{{ loading_text }}</p>
         </div>
     </div>
@@ -134,15 +132,21 @@ section {
             }
         }
 
-        img {
+        .img {
             width: 75vmin;
+            height: 20vmin;
+            background-image: url(@a/image/logo.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, 0.4));
         }
 
         p {
             text-align: center;
             font-weight: lighter;
             letter-spacing: 0.5em;
-            font-size: 1.6vmin;
+            font-size: min(2.1vw, 1.6vh);
         }
     }
 
@@ -163,7 +167,7 @@ $clip-path-right: polygon(nth($clip-path, 4), nth($clip-path, 3), nth($clip-path
     clip-path: $clip-path-left;
     -webkit-clip-path: $clip-path-left;
     animation: 850ms ease-in-out forwards in;
-    $delay: 50ms;
+    $delay: 80ms;
 
     .hide & {
         clip-path: $clip-path-full;
@@ -172,44 +176,26 @@ $clip-path-right: polygon(nth($clip-path, 4), nth($clip-path, 3), nth($clip-path
     }
 
     &:nth-child(1) {
-        background: rgb(152, 193, 30, 0.3);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: #51c3bd;
         animation-delay: $delay*0;
-        .hide & {
-            animation-delay: $delay*4;
-        }
-    }
-
-    &:nth-child(2) {
-        background: rgba(105, 170, 36, 0.5);
-        animation-delay: $delay*1;
-        .hide & {
-            animation-delay: $delay*3;
-        }
-    }
-
-    &:nth-child(3) {
-        background: rgba(79, 193, 157, 0.7);
-        animation-delay: $delay*2;
         .hide & {
             animation-delay: $delay*2;
         }
     }
 
-    &:nth-child(4) {
-        background: rgba(72, 139, 198, 0.9);
-        animation-delay: $delay*3;
+    &:nth-child(2) {
+        background: #93cf72;
+        animation-delay: $delay*1;
         .hide & {
             animation-delay: $delay*1;
         }
     }
     
-    &:nth-child(5) {
-        background-color: #a7938e;
+    &:nth-child(3) {
+        background-color: #c0b4b0;
         background-image: url(@a/image/dot.svg);
-        background-size: 30px;
-        animation-delay: $delay*4;
+        background-size: 25px;
+        animation-delay: $delay*2;
         .hide & {
             animation-delay: $delay*0;
         }

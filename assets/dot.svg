@@ -7,14 +7,14 @@
       }
 
       .cls-2 {
-        opacity: .3;
+        opacity: .2;
       }
     </style>
   </defs>
   <g class="cls-2">
-    <circle class="cls-1" cx="36.64" cy="13.36" r="1.72"/>
+    <circle class="cls-1" cx="36.25" cy="13.75" r="2.5"/>
   </g>
   <g class="cls-2">
-    <circle class="cls-1" cx="13.36" cy="36.64" r="1.72"/>
+    <circle class="cls-1" cx="13.75" cy="36.25" r="2.5"/>
   </g>
 </svg>
