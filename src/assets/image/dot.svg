@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        opacity: .3;
+      }
+    </style>
+  </defs>
+  <g class="cls-2">
+    <circle class="cls-1" cx="36.64" cy="13.36" r="1.72"/>
+  </g>
+  <g class="cls-2">
+    <circle class="cls-1" cx="13.36" cy="36.64" r="1.72"/>
+  </g>
+</svg>
