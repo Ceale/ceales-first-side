@@ -1,40 +1,79 @@
 <script setup>
 import { ref } from "vue"
+import sleep from "@u/sleep"
 
-const show = ref(true)
-const hide = ref(true)
+const emit = defineEmits(["close"])
 
-function Hide() {
-    show.value = false
-    console.log("hide loading")
-    setTimeout(() => {
-        hide.value = false
-    }, 5000)
-}
-
+let load_finish = false
 document.addEventListener("readystatechange", (event) => {
-    if (event.target.readyState === "complete") Hide()
+    if (event.target.readyState === "complete") {
+        load_finish = true
+        Hide()
+    }
 })
+
+let width = ref(0)
+
+let animation_finish = false
+const timer = setInterval(() => {
+    width.value += Math.floor(Math.random()*20) + 3
+    if ( width.value > 94.2 ) {
+        clearInterval(timer)
+        width.value = 94.2
+        animation_finish = true
+        Hide()
+    }
+}, 475)
+
+const style = ref({
+    opacity: 1
+})
+
+async function Hide() {
+    if ( !load_finish || !animation_finish ) return
+
+    await sleep(700)
+    width.value = 100
+    await sleep(400)
+    style.value = {
+        opacity: 0
+    }
+    await sleep(600)
+    emit("close")
+}
 
 </script>
 
 
 <template>
-<section v-if="show"></section>
+<section :style="style">
+    <div class="background">
+        <div class="fill" :style="{ width: width+'%' }"></div>
+    </div>
+</section>
 </template>
 
 
 <style scoped>
 section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #fff;
-    opacity: 1;
-    clip-path: circle(100%);
-    transition: clip-path 1000ms cubic-bezier(.43,.03,.35,.95), opacity 500ms cubic-bezier(.64,.01,.7,.55) 200ms;
-    z-index: 10000;
+    transition: opacity 600ms ease;
 }
 
-.show {
-    opacity: 0;
-    clip-path: circle(0%);
+.background {
+    width: 56vmin;
+    height: 7vmin;
+    mask-image: url("@a/image/loading/genshin/loading.svg");
+    -webkit-mask-image: url("@a/image/loading/genshin/loading.svg");
+    background-color: #f5f5f5;
+}
+
+.fill {
+    height: 100%;
+    background-color: #666666;
+    transition: width 400ms linear;
 }
 </style>

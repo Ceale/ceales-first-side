@@ -6,8 +6,8 @@ import Switch from "@c/Switch.vue"
 </script>
 
 <template>
-    <Loading />
     <Switch />
+    <Loading />
     <section>
         <RouterView />
     </section>

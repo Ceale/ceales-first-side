@@ -1,5 +1,6 @@
 <script setup>
 import { ref, inject } from "vue"
+import sleep from "@u/sleep"
 
 let first = true
 
@@ -31,6 +32,7 @@ function Start(next) {
 const show = ref(false)
 const className = ref([])
 let should_end = false
+const in_delay = 80
 
 async function animation_start(finish) {
     should_end = false
@@ -38,16 +40,13 @@ async function animation_start(finish) {
 
     show.value = true
     loading_text = get_loading_text()
-    setTimeout(() => {
-        finish()
-        animation_run()
-    }, 850+in_delay*5)
+    
+    await sleep(850 + in_delay * 2)
+    finish()
+    animation_run()
 }
 
-const in_delay = 80
-
 function animation_run() {
-
     let timer = setInterval(() => {
         if ( should_end == true ) {
             clearInterval(timer)
@@ -55,19 +54,16 @@ function animation_run() {
             animation_end()
         }
     }, 100)
-    
 }
 
 function animation_stop() {
     should_end = true
 }
 
-function animation_end() {
+async function animation_end() {
     className.value.push("hide")
-
-    setTimeout(() => {
-        show.value = false
-    }, 850+in_delay*4)
+    await sleep(850 + in_delay * 2)
+    show.value = false
 
 }
 
@@ -139,7 +135,7 @@ section {
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, 0.4));
+            filter: drop-shadow(0 0 1.5px rgba(0, 0, 0, 0.3));
         }
 
         p {

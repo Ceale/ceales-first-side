@@ -11,7 +11,8 @@
       "@/*": ["./src/*"],
       "@p/*": ["./src/page/*"],
       "@c/*": ["./src/component/*"],
-      "@a/*": ["./src/assets/*"]
+      "@a/*": ["./src/assets/*"],
+      "@u/*": ["./src/util/*"]
     }
   }
 }
